@@ -2,7 +2,7 @@ Ext.define('App.view.profitloss.ProfitLossModel', {
 	extend : 'Ext.app.ViewModel',
 	alias : 'viewmodel.profitloss',
 
-	requires : ['Ext.data.Store'],
+	requires : [ 'Ext.data.Store' ],
 
 	stores : {
 		feedItems : {
@@ -19,9 +19,7 @@ Ext.define('App.view.profitloss.ProfitLossModel', {
 					rootProperty : 'records'
 				}
 			},
-			
-			groupField: 'group',
-
+			groupField : 'group',
 			autoLoad : true
 		}
 	}
