@@ -1,7 +1,10 @@
 package com.seven7.insurance.feed.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,49 +35,61 @@ import lombok.Setter;
 @Table
 public class FeedFile extends AbstractPersistable implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1514359090279842696L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1514359090279842696L;
 
-	enum FileType {
-		EXCEL, PDF, WORD
-	}
+    enum FileType {
+        TEXT("txt"), EXCEL("xls", "xlsx"), PDF("pdf"), WORD("doc", "docx");
 
-	private String fileName;
+        private final List<String> suffixes;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User uploadedBy;
+        FileType(String... suffixStrings) {
+            suffixes = new ArrayList<String>();
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar uploaded;
+            if (ArrayUtils.isNotEmpty(suffixStrings)) {
+                for (String sufix : suffixStrings) {
+                    suffixes.add(StringUtils.lowerCase("." + StringUtils.trim(sufix)));
+                }
+            }
+        }
 
-	private String type;
+        public static FileType getType(String suffix) {
+            for (FileType type : FileType.values()) {
+                if (type.suffixes.contains(StringUtils.lowerCase(StringUtils.trim(suffix)))) {
+                    return type;
+                }
+            }
+            return TEXT;
+        }
 
-	@Type(type = "org.hibernate.type.TrueFalseType")
-	private Boolean active;
+    }
 
-	@JsonInclude
-	public String getGroup() {
-		return "";
-	}
+    private String fileName;
 
-	@JsonInclude
-	public String getUrl() {
-		return "";
-	}
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User uploadedBy;
 
-	public static FeedFile from(MultipartFile file) {
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar uploaded;
 
-		FeedFile feed = new FeedFile();
+    private String type;
 
-		String fileName = file.getOriginalFilename();
+    @Type(type = "org.hibernate.type.TrueFalseType")
+    private Boolean active;
 
-		feed.setActive(true);
-		feed.setFileName(fileName);
-		feed.setType((StringUtils.upperCase(fileName.substring(fileName.lastIndexOf(".") + 1))));
-		feed.setUploaded(Calendar.getInstance());
+    public static FeedFile from(MultipartFile file) {
 
-		return feed;
-	}
+        FeedFile feed = new FeedFile();
+
+        String fileName = file.getOriginalFilename(), suffix = fileName.substring(fileName.lastIndexOf("."));
+
+        feed.setActive(true);
+        feed.setFileName(fileName);
+        feed.setType(StringUtils.lowerCase(FileType.getType(suffix).name()));
+        feed.setUploaded(Calendar.getInstance());
+
+        return feed;
+    }
 }
