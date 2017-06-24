@@ -1,29 +1,28 @@
 Ext.define('App.view.profitloss.ProfitLossModel', {
-    extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.profitloss',
+	extend : 'Ext.app.ViewModel',
+	alias : 'viewmodel.profitloss',
 
-    requires: [
-        'App.model.MetaProfitloss',
-        'App.model.FullProfitloss'
-    ],
+	requires : ['Ext.data.Store'],
 
-    stores: {
-        metaProfitLoss: {
-            model: 'App.model.MetaProfitloss',
-            autoLoad: true,
+	stores : {
+		feedItems : {
+			type : 'store',
+			fields : [ 'clientName', 'idNumber', 'phone', 'plateNumber',
+					'vehicleType', 'frameNumber', 'engineNumber', 'city',
+					'batch', 'group' ],
 
-            listeners: {
-                load: 'onMetaDataLoad'
-            },
+			proxy : {
+				type : 'direct',
+				directFn : 'feedController.listFeedItems',
+				reader : {
+					type : 'json',
+					rootProperty : 'records'
+				}
+			},
+			
+			groupField: 'group',
 
-            proxy: {
-                type: 'ajax',
-                url: 'resources/data/meta_data.json',
-
-                reader: {
-                    type: 'json'
-                }
-            }
-        }
-    }
+			autoLoad : true
+		}
+	}
 });

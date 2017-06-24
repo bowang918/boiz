@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.seven7.insurance.feed.domain.FeedFile;
+import com.seven7.insurance.feed.domain.FeedItem;
 import com.seven7.insurance.feed.services.FeedService;
 
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
@@ -31,19 +32,21 @@ public class FeedController {
 
 	@ExtDirectMethod(ExtDirectMethodType.FORM_POST)
 	public ExtDirectFormPostResult uploadFeed(@RequestParam("feedFile") MultipartFile file) {
+		boolean success = false;
 		if (file != null && !file.isEmpty()) {
-			feedService.process(file);
+			success = feedService.process(file);
 		}
-		return new ExtDirectFormPostResult(true);
+		return new ExtDirectFormPostResult(success);
 	}
-	
-	@ExtDirectMethod
-	public ExtDirectStoreResult<FeedFile> listFeeds(){
-		ExtDirectStoreResult<FeedFile> response = new ExtDirectStoreResult<FeedFile>(); 
-		List<FeedFile> feeds = feedService.listFeeds();
-		response.setRecords(feeds);
-		return response;
-		
+
+	@ExtDirectMethod(ExtDirectMethodType.STORE_READ)
+	public ExtDirectStoreResult<FeedFile> listFeeds() {
+		return new ExtDirectStoreResult<FeedFile>(feedService.listFeeds());
+	}
+
+	@ExtDirectMethod(ExtDirectMethodType.STORE_READ)
+	public ExtDirectStoreResult<FeedItem> listFeedItems() {
+		return new ExtDirectStoreResult<FeedItem>(feedService.listFeedItems());
 	}
 
 	@GetMapping("/feed/{feedFileId}")
