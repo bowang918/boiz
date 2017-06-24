@@ -1,6 +1,7 @@
 Ext.define('App.view.quarterly.QuarterlyController', {
 	extend : 'Ext.app.ViewController',
 	alias : 'controller.quarterly',
+	requires : [ 'Ext.window.Toast' ],
 
 	init : function(view) {
 		// We provide the updater for the activeState config of our View.
@@ -21,16 +22,28 @@ Ext.define('App.view.quarterly.QuarterlyController', {
 	},
 
 	uploadFeed : function(fileField, value) {
-		var form = fileField.up('form');
+		var me = this, feedStore = me.getStore('feeds'), 
+			form = fileField.up('form');
 		if (form.isValid()) {
 			console.log(value);
 			form.submit({
 				waitMsg : '文件上传中...',
 				success : function(form, action) {
-					Ext.Msg.alert('Success', action.result.msg);
+					feedStore && feedStore.reload();
+					Ext.toast({
+					     html: '文件上传成功！',
+					     title: '恭喜你',
+					     width: 240,
+					     align: 'br'
+					 });
 				},
 				failure : function(form, action) {
-					Ext.Msg.alert('Failed', action.result.msg);
+					Ext.toast({
+					     html: '文件上传失败！',
+					     title: '抱歉',
+					     width: 240,
+					     align: 'br'
+					 });
 				}
 			});
 		}
