@@ -6,6 +6,8 @@
  */
 Ext.define('App.Application', {
 	extend : 'Ext.app.Application',
+	
+	requires:['Ext.overrides.toolbar.Paging','Ext.overrides.Date'],
 
 	name : 'App',
 

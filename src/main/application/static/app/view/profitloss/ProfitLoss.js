@@ -1,7 +1,8 @@
 Ext.define('App.view.profitloss.ProfitLoss', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.profitloss',
-	requires : [ 'Ext.grid.feature.Grouping', 'App.store.ProfitLoss' ],
+	requires : [ 'Ext.grid.feature.Grouping', 'App.store.ProfitLoss',
+			'Ext.toolbar.Paging' ],
 
 	itemId : 'profitloss',
 	cls : 'dynamic-pl-grid',
@@ -71,7 +72,11 @@ Ext.define('App.view.profitloss.ProfitLoss', {
 		text : '批次',
 		dataIndex : 'batch',
 		flex : 1
-	} ]
+	} ],
+	bbar : {
+		xtype : 'pagingtoolbar',
+		displayInfo : true
+	}
 // tbar: [{
 // text: 'Quarter',
 // width: 150,
