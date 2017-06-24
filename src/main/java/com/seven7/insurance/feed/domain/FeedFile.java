@@ -1,17 +1,23 @@
-package com.seven7.insurance.domain;
+package com.seven7.insurance.feed.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
+
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.seven7.insurance.domain.AbstractPersistable;
+import com.seven7.insurance.domain.User;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by FANFAN on 2017/6/10.
@@ -23,35 +29,48 @@ import java.io.Serializable;
 @Table
 public class FeedFile extends AbstractPersistable implements Serializable {
 
-    enum FileType{
-        EXCEL,PDF,WORD
-    }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1514359090279842696L;
 
-    private String fileName;
+	enum FileType {
+		EXCEL, PDF, WORD
+	}
 
-    @JsonIgnore
-    private String filePath;
+	private String fileName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User uploadedBy;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User uploadedBy;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private UploadingLog uploading;
+	private LocalDateTime uploaded;
 
-    private DateTime uploaded;
+	private String type;
 
-    private FileType type;
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean active;
 
-    @Type(type = "org.hibernate.type.TrueFalseType")
-    private Boolean active;
+	@JsonInclude
+	public String getGroup() {
+		return "";
+	}
 
-    @JsonInclude
-    public String getGroup(){
-        return "";
-    }
+	@JsonInclude
+	public String getUrl() {
+		return "";
+	}
 
-    @JsonInclude
-    public String getUrl(){
-        return "";
-    }
+	public static FeedFile from(MultipartFile file) {
+
+		FeedFile feed = new FeedFile();
+
+		String fileName = file.getOriginalFilename();
+
+		feed.setActive(true);
+		feed.setFileName(fileName);
+		feed.setType((StringUtils.upperCase(fileName.substring(fileName.lastIndexOf(".") + 1))));
+		feed.setUploaded(LocalDateTime.now());
+
+		return feed;
+	}
 }

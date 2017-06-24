@@ -34,7 +34,6 @@ Ext.define('App.view.feed.UploadForm',{
         // },
         buttonOnly: false,
         allowBlank:false,
-        // fieldLabel: 'File',
         name: 'feedFile',
         buttonText: '选择文件',
         listeners: {

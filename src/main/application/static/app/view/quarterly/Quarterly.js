@@ -195,7 +195,7 @@ Ext.define('App.view.quarterly.Quarterly', {
         xtype: 'dataview',
         cls: 'quarterly-dataview',
 
-        bind: '{statements}',
+        bind: '{feeds}',
 
         itemSelector: 'div.thumb-wrap',
 

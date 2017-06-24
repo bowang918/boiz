@@ -1,10 +1,16 @@
 package com.seven7.insurance.services.impl;
 
-import com.seven7.insurance.services.FeedService;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
+import com.seven7.insurance.feed.domain.FeedFile;
+import com.seven7.insurance.feed.repository.FeedFileRepository;
+import com.seven7.insurance.services.FeedService;
 
 /**
  * Created by FANFAN on 2017/6/10.
@@ -13,10 +19,19 @@ import javax.transaction.Transactional;
 @Transactional
 public class FeedServiceImpl implements FeedService {
 
-    @Override
-    public void process(MultipartFile file) {
-        if (file != null && !file.isEmpty()) {
-//            resp.addResultProperty("fileContents", new String(file.getBytes(), StandardCharsets.ISO_8859_1));
-        }
-    }
+	@Autowired
+	private FeedFileRepository feedRepository;
+
+	@Override
+	public void process(MultipartFile file) {
+		if (file != null && !file.isEmpty()) {
+			FeedFile feed = FeedFile.from(file);
+			feedRepository.save(feed);
+		}
+	}
+
+	@Override
+	public List<FeedFile> listFeeds() {
+		return feedRepository.findAll();
+	}
 }

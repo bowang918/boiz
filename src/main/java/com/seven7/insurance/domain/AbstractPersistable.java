@@ -11,63 +11,61 @@ import javax.persistence.MappedSuperclass;
  * Created by FANFAN on 2017/6/7.
  * <p>
  * Abstract base class for entities. Provides a String ID that will contain a
- * UUID, leverages Hibernate's auto-generation for UUIDs, and
- * implements {@link #equals(Object)} and {@link #hashCode()} based on that id.
+ * UUID, leverages Hibernate's auto-generation for UUIDs, and implements
+ * {@link #equals(Object)} and {@link #hashCode()} based on that id.
  * <p>
  * Inspired by Spring Data JPA's AbstractPersistable implementation.
  */
 @MappedSuperclass
 public abstract class AbstractPersistable implements Persistable<String> {
-    private static final long serialVersionUID = 2535090450811888936L;
 
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String id;
+	private static final long serialVersionUID = 2535090450811888936L;
 
-    public String getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid")
+	private String id;
 
-    protected void setId(final String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public boolean isNew() {
-        return getId() == null;
-    }
+	protected void setId(final String id) {
+		this.id = id;
+	}
 
+	public boolean isNew() {
+		return getId() == null;
+	}
 
-    @Override
-    public String toString() {
-        return String.format("Entity of type %s with id: %s", this.getClass().getName(), getId());
-    }
+	@Override
+	public String toString() {
+		return String.format("Entity of type %s with id: %s", this.getClass().getName(), getId());
+	}
 
+	@Override
+	public boolean equals(Object obj) {
 
-    @Override
-    public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
 
-        if (obj == null) {
-            return false;
-        }
+		if (this == obj) {
+			return true;
+		}
 
-        if (this == obj) {
-            return true;
-        }
+		if (!getClass().equals(obj.getClass())) {
+			return false;
+		}
 
-        if (!getClass().equals(obj.getClass())) {
-            return false;
-        }
+		AbstractPersistable rhs = (AbstractPersistable) obj;
+		return this.id != null && this.id.equals(rhs.id);
+	}
 
-        AbstractPersistable rhs = (AbstractPersistable) obj;
-        return this.id != null && this.id.equals(rhs.id);
-    }
-
-
-    @Override
-    public int hashCode() {
-        int hashCode = 17;
-        hashCode += (this.id == null) ? 0 : this.id.hashCode() * 31;
-        return hashCode;
-    }
+	@Override
+	public int hashCode() {
+		int hashCode = 17;
+		hashCode += (this.id == null) ? 0 : this.id.hashCode() * 31;
+		return hashCode;
+	}
 }
