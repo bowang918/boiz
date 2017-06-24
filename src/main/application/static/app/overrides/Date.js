@@ -11,6 +11,7 @@ Ext.define('Ext.overrides.Date', {
 		LongTime : "g:i:s A",
 		SortableDateTime : "Y-m-d\\TH:i:s",
 		UniversalSortableDateTime : "Y-m-d H:i:sO",
-		YearMonth : "F, Y"
+		YearMonth : "F, Y",
+		YearMonthZh : "Y年m月"
 	}
 });
