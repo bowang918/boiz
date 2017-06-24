@@ -42,8 +42,12 @@ Ext.define('App.view.quarterly.QuarterlyModel', {
 			autoLoad : true
 		},
 		feeds : {
-			type:'store',
-			fields : [ 'name', 'thumb', 'url', 'type' ],
+			type : 'store',
+			fields : [ 'name', 'thumb', 'url', 'type', {
+				name : 'uploaded',
+				type : 'date',
+				dateFormat : 'time'
+			} ],
 
 			proxy : {
 				type : 'direct',

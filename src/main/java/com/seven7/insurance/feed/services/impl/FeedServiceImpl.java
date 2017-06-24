@@ -1,4 +1,4 @@
-package com.seven7.insurance.services.impl;
+package com.seven7.insurance.feed.services.impl;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.seven7.insurance.feed.domain.FeedFile;
 import com.seven7.insurance.feed.repository.FeedFileRepository;
-import com.seven7.insurance.services.FeedService;
+import com.seven7.insurance.feed.services.FeedService;
 
 /**
  * Created by FANFAN on 2017/6/10.

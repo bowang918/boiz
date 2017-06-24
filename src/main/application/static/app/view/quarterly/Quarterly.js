@@ -211,7 +211,7 @@ Ext.define('App.view.quarterly.Quarterly', {
             '<div class="thumb-icon {type}"></div>',
             '<div class="thumb-title-container">',
             '<div class="thumb-title">{fileName}</div>',
-            '<div class="thumb-title-small">Uploaded: {uploaded}</div>',
+            '<div class="thumb-title-small">上传于: {[Ext.Date.format(values.uploaded, Ext.Date.patterns.ISO8601Long)]}</div>',
             '</div>',
             '<div class="thumb-download"></div>',
             '</a>',

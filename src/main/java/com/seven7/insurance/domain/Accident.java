@@ -3,7 +3,6 @@ package com.seven7.insurance.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -24,7 +23,7 @@ public class Accident extends AbstractPersistable implements Serializable {
      */
     private static final long serialVersionUID = -8714282338377007375L;
 
-    private DateTime time;
+//    private DateTime time;
 
     private Address address;
 

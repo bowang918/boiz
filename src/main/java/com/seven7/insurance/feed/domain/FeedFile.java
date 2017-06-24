@@ -1,12 +1,14 @@
 package com.seven7.insurance.feed.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Type;
@@ -43,7 +45,8 @@ public class FeedFile extends AbstractPersistable implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User uploadedBy;
 
-	private LocalDateTime uploaded;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar uploaded;
 
 	private String type;
 
@@ -69,7 +72,7 @@ public class FeedFile extends AbstractPersistable implements Serializable {
 		feed.setActive(true);
 		feed.setFileName(fileName);
 		feed.setType((StringUtils.upperCase(fileName.substring(fileName.lastIndexOf(".") + 1))));
-		feed.setUploaded(LocalDateTime.now());
+		feed.setUploaded(Calendar.getInstance());
 
 		return feed;
 	}

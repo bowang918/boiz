@@ -9,6 +9,8 @@ Ext.application({
     extend: 'App.Application',
 
     autoCreateViewport: 'App.view.main.Main',
+    
+    requires:['Ext.overrides.Date'],
 
     //-------------------------------------------------------------------------
     // Most customizations should be made to App.Application. If you need to

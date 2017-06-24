@@ -48,6 +48,12 @@
 		"^\\.svn$",
 		"^\\.git$"
 	],
+	"overrides": [
+        "${app.dir}/overrides",
+        "${app.dir}/locale/${app.locale}",
+        "${app.dir}/${toolkit.name}/overrides",
+        "${app.dir}/${toolkit.name}/locale/${app.locale}"
+    ],
 	"archivePath": "archive",
 	"output": "${workspace.build.dir}/${build.environment}/${app.name}",
 	"id": "30995804-454a-4b10-8285-9e6e9c8e6266"

@@ -1,4 +1,4 @@
-package com.seven7.insurance.controller;
+package com.seven7.insurance.feed.controller;
 
 import java.util.List;
 
@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.seven7.insurance.feed.domain.FeedFile;
-import com.seven7.insurance.services.FeedService;
+import com.seven7.insurance.feed.services.FeedService;
 
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
-import ch.ralscha.extdirectspring.bean.ExtDirectResponse;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreResult;
 
 /**

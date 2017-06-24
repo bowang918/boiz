@@ -1,4 +1,4 @@
-package com.seven7.insurance.services;
+package com.seven7.insurance.feed.services;
 
 import java.util.List;
 
