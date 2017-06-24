@@ -18,6 +18,7 @@ Ext.define('App.Application', {
     ],
 
     launch: function () {
+    	Ext.fly('loader');
         Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
         // Let's add a CSS class to body if flex box wrap is not implemented or broken
         // http://flexboxlayouts.com/flexboxlayout_tricks.html
