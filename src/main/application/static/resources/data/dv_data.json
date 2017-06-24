@@ -1,0 +1,66 @@
+[
+  {
+    "quarterly": "q4",
+    "fileName": "QUARTERLY STATEMENT 4 2013",
+    "type": "excel",
+    "url": "resources/reports/Q42013Report.pdf",
+    "group": "2013 STATEMENTS",
+    "uploaded": "DECEMBER 20, 2013"
+  },
+  {
+    "quarterly": "q3",
+    "fileName": "QUARTERLY STATEMENT 3 2013",
+    "type": "pdf",
+    "url": "resources/reports/Q32013Report.pdf",
+    "group": "2013 STATEMENTS",
+    "uploaded": "SEPTEMBER 20, 2013"
+  },
+  {
+    "quarterly": "q2",
+    "fileName": "QUARTERLY STATEMENT 2 2013",
+    "type": "excel",
+    "url": "resources/reports/Q22013Report.pdf",
+    "group": "2013 STATEMENTS",
+    "uploaded": "JUNE 20, 2013"
+  },
+  {
+    "quarterly": "q1",
+    "fileName": "QUARTERLY STATEMENT 1 2013",
+    "type": "excel",
+    "url": "resources/reports/Q12013Report.pdf",
+    "group": "2013 STATEMENTS",
+    "uploaded": "MARCH 20, 2013"
+  },
+  {
+    "quarterly": "q4",
+    "fileName": "QUARTERLY STATEMENT 4 2012",
+    "type": "excel",
+    "url": "resources/reports/Q42012Report.pdf",
+    "group": "2012 STATEMENTS",
+    "uploaded": "DECEMBER 20, 2012"
+  },
+  {
+    "quarterly": "q3",
+    "fileName": "QUARTERLY STATEMENT 3 2012",
+    "type": "pdf",
+    "url": "resources/reports/Q32012Report.pdf",
+    "group": "2012 STATEMENTS",
+    "uploaded": "SEPTEMBER 20, 2012"
+  },
+  {
+    "quarterly": "q2",
+    "fileName": "QUARTERLY STATEMENT 2 2012",
+    "type": "pdf",
+    "url": "resources/reports/Q22012Report.pdf",
+    "group": "2012 STATEMENTS",
+    "uploaded": "JUNE 20, 2012"
+  },
+  {
+    "quarterly": "q1",
+    "fileName": "QUARTERLY STATEMENT 1 2012",
+    "type": "pdf",
+    "url": "resources/reports/Q12012Report.pdf",
+    "group": "2012 STATEMENTS",
+    "uploaded": "MARCH 20, 2012"
+  }
+]
