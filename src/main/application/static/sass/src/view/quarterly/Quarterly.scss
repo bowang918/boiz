@@ -154,6 +154,27 @@
     }
   }
 
+  .word {
+    background-image: url(icons/word.png);
+    .x-ie8 & {
+      background-image: url(icons/word-small.png);
+    }
+  }
+
+  .text {
+    background-image: url(icons/text.png);
+    .x-ie8 & {
+      background-image: url(icons/text-small.png);
+    }
+  }
+
+  .image {
+    background-image: url(icons/image.png);
+    .x-ie8 & {
+      background-image: url(icons/image-small.png);
+    }
+  }
+
   .thumb-download {
     height: 40px;
     width: 40px;
