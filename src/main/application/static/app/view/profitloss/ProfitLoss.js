@@ -96,28 +96,13 @@ Ext.define('App.view.profitloss.ProfitLoss', {
 	bbar : {
 		xtype : 'pagingtoolbar',
 		displayInfo : true
-	}
-// tbar: [{
-// text: 'Quarter',
-// width: 150,
-// textAlign: 'left',
-// reference: 'quartersButton',
-// menu: {
-// id: 'quarter-menu',
-// cls: 'pl-option-menu',
-// items: []
-// }
-// }, {
-// text: 'Region',
-// width: 150,
-// textAlign: 'left',
-// reference: 'regionsButton',
-// menu: {
-// id: 'region-menu',
-// cls: 'pl-option-menu',
-// items: []
-// }
-// }],
+	},
+	tbar : [ {
+		xtype:'button',
+		text : '开始查询',
+		textAlign : 'left',
+		reference : 'queryButton'
+	} ],
 
 // These properties are aspects of the view that get used to create dynamic
 // grid

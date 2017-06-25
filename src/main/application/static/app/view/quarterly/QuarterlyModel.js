@@ -47,7 +47,7 @@ Ext.define('App.view.quarterly.QuarterlyModel', {
 				name : 'uploaded',
 				type : 'date',
 				dateFormat : 'time'
-			} ],
+			}, 'uploadedByUser'],
 
 			proxy : {
 				type : 'direct',

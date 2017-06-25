@@ -18,7 +18,7 @@ Ext.define('App.view.feed.FeedList', {
                     '<div class="thumb-icon {type}"></div>',
                     '<div class="thumb-title-container">',
                     '<div class="thumb-title">{fileName}</div>',
-                    '<div class="thumb-title-small">上传于: {[Ext.Date.format(values.uploaded, Ext.Date.patterns.ISO8601Long)]}</div>',
+                    '<div class="thumb-title-small"> {uploadedByUser} 上传于: {[Ext.Date.format(values.uploaded, Ext.Date.patterns.ISO8601Long)]}</div>',
                     '</div>',
                     '<div class="thumb-download"></div>',
                 '</a>',
