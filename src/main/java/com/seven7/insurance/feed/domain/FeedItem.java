@@ -84,6 +84,8 @@ public class FeedItem extends AbstractPersistable implements Serializable {
 	public static FeedItem from(Row row) {
 		FeedItem item = new FeedItem();
 		
+		Cell cell = null;
+		
 		item.setClientName(String.valueOf(getCellValue(row.getCell(0))));
 		item.setIdNumber(String.valueOf(getCellValue(row.getCell(1))));
 		item.setPhone(String.valueOf(getCellValue(row.getCell(2))));
@@ -91,8 +93,17 @@ public class FeedItem extends AbstractPersistable implements Serializable {
 		item.setVehicleType(String.valueOf(getCellValue(row.getCell(4))));
 		item.setFrameNumber(String.valueOf(getCellValue(row.getCell(5))));
 		item.setEngineNumber(String.valueOf(getCellValue(row.getCell(6))));
-//		item.setRegisted(DateFormat.parse(getCellValue(row.getCell(7))));
-//		item.setDueDateTime(String.valueOf(getCellValue(row.getCell(8))));
+		
+		cell = row.getCell(7);
+		if (cell != null) {
+			item.setRegisted(cell.getDateCellValue());
+		}
+		
+		cell = row.getCell(8);
+		if (cell != null) {
+			item.setDueDateTime(cell.getDateCellValue());
+		}
+		
 		item.setCity(String.valueOf(getCellValue(row.getCell(9))));
 		item.setRegistedString(String.valueOf(getCellValue(row.getCell(10))));
 		item.setBatch(String.valueOf(getCellValue(row.getCell(11))));

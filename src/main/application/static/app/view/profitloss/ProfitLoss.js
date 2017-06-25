@@ -65,12 +65,32 @@ Ext.define('App.view.profitloss.ProfitLoss', {
 		dataIndex : 'engineNumber',
 		flex : 1
 	}, {
+		text : '初登时间',
+		dataIndex : 'registed',
+		xtype : 'datecolumn',
+		format : 'Y-m-d',
+		flex : 1
+	}, {
+		text : '到期时间',
+		dataIndex : 'dueDateTime',
+		xtype : 'datecolumn',
+		format : 'Y-m-d',
+		flex : 1
+	}, {
 		text : '城市',
 		dataIndex : 'city',
 		flex : 1
 	}, {
+		text : '文本格式到期日',
+		dataIndex : 'dueDateTimeString',
+		flex : 1
+	}, {
 		text : '批次',
 		dataIndex : 'batch',
+		flex : 1
+	}, {
+		text : '文本格式初登',
+		dataIndex : 'registedString',
 		flex : 1
 	} ],
 	bbar : {

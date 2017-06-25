@@ -46,7 +46,7 @@ public class FeedServiceImpl implements FeedService {
 				for (int k = 0; k < wb.getNumberOfSheets(); k++) {
 					HSSFSheet sheet = wb.getSheetAt(k);
 					int rows = sheet.getPhysicalNumberOfRows();
-					for (int r = 0; r < rows; r++) {
+					for (int r = 1; r < rows; r++) {
 						HSSFRow row = sheet.getRow(r);
 						if (row == null) {
 							continue;

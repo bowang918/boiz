@@ -8,8 +8,16 @@ Ext.define('App.view.profitloss.ProfitLossModel', {
 		feedItems : {
 			type : 'store',
 			fields : [ 'clientName', 'idNumber', 'phone', 'plateNumber',
-					'vehicleType', 'frameNumber', 'engineNumber', 'city',
-					'batch', 'group' ],
+					'vehicleType', 'frameNumber', 'engineNumber', 'city','dueDateTimeString','registedString',
+					'batch', 'group', {
+						name : 'registed',
+						type : 'date',
+						dateFormat : 'time'
+					}, {
+						name : 'dueDateTime',
+						type : 'date',
+						dateFormat : 'time'
+					} ],
 
 			proxy : {
 				type : 'direct',
