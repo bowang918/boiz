@@ -3,7 +3,13 @@
  */
 package com.seven7.insurance.query.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.seven7.insurance.query.dto.ImageDTO;
+import com.seven7.insurance.query.service.QueryService;
+
+import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 
 /**
  * @author Seven7
@@ -12,12 +18,17 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class QueryController {
 	
+	@Autowired
+	private QueryService queryService;
+	
 	public String login(){
 		return "";
 	}
 	
-	public void startQuery(String code){
-		
+	@ExtDirectMethod
+	public ImageDTO startQuery(){
+		return queryService.openLoginPage();
 	}
+	
 
 }

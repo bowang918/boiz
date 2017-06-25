@@ -2,7 +2,7 @@ Ext.define('App.view.profitloss.ProfitLoss', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.profitloss',
 	requires : [ 'Ext.grid.feature.Grouping', 'App.store.ProfitLoss',
-			'Ext.toolbar.Paging' ],
+			'Ext.toolbar.Paging', 'Ext.window.Window' ],
 
 	itemId : 'profitloss',
 	cls : 'dynamic-pl-grid',
@@ -98,10 +98,33 @@ Ext.define('App.view.profitloss.ProfitLoss', {
 		displayInfo : true
 	},
 	tbar : [ {
-		xtype:'button',
+		xtype : 'button',
 		text : '开始查询',
 		textAlign : 'left',
-		reference : 'queryButton'
+		reference : 'queryButton',
+		handler : function() {
+			queryController.startQuery(function(result) {
+				var code = Ext.apply({
+					xtype : 'image',
+				}, result);
+				Ext.create('Ext.window.Window', {
+					title : 'Hello',
+					height : 200,
+					width : 400,
+					layout : 'fit',
+					items : [ code, {
+						xtype : 'textfield',
+						itemId : 'code'
+					} ],
+					buttons : [ {
+						text : '确定',
+						handler : function() {
+							
+						}
+					} ]
+				}).show();
+			});
+		}
 	} ],
 
 // These properties are aspects of the view that get used to create dynamic
